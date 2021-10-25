@@ -30,13 +30,6 @@ void write_file(tab& storage){
     myFile.close();
 }
 
-template<typename it>
-void swap(it* it_1, it* it_2){
-    it temp = *it_1;
-    *it_1 = *it_2;
-    *it_2 = temp;
-}
-
 
 template<typename tab>
 void sort_file(tab& storage){
@@ -44,11 +37,12 @@ void sort_file(tab& storage){
     auto it_max = storage.end();
     for(auto i = it_min; i != it_max ; i++ ){
         it_min = i;
-        std::cout << *it_min << std::endl;
         for(auto j = i; j != it_max; j++)
             if (*j < *it_min)
                 it_min = j;
-        swap(&*it_min,&*i);
+        auto temp = *it_min;
+        *it_min = *i;
+        *i = temp;
 
     }
 }
@@ -71,7 +65,7 @@ void read_file(std::ifstream &input_file) {
 
 int main() {
 
-    std::ifstream file ("/home/alphae/Cours/C++/TP/TP3/example_2.txt");
+    std::ifstream file ("/home/alphae/Cours/C++/TP/TP3/example_1.txt");
     if (file.is_open()){
         std::cout << "file opened" << std::endl ;
 
