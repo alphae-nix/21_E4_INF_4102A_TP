@@ -5,13 +5,10 @@
 #include <vector>
 #include <list>
 #include <deque>
-#include <iterator>
 
-
-
-
+//Fonction permettant la lecture d'une ligne dans un fichier passé en paramètre
 char variable_type(std::ifstream& data) {
-    auto s = std::string{};
+    std::string s;
     std::getline(data, s);
     return s[0];
 }
@@ -23,6 +20,7 @@ void write_file(tab& storage){
     auto iterator_max = storage.end();
 
     std::ofstream myFile("resultat.txt");
+    //affichage de notre contenu
     for (auto i = iterator_min; i != iterator_max; i++) {
         std::cout << *i << " ";
     }
@@ -33,20 +31,22 @@ void write_file(tab& storage){
 
 template<typename tab>
 void sort_file(tab& storage){
-    auto it_min = storage.begin();
+    auto it_min = storage.begin(); //création des 2 itérateurs
     auto it_max = storage.end();
+
     for(auto i = it_min; i != it_max ; i++ ){
         it_min = i;
-        for(auto j = i; j != it_max; j++)
+        for(auto j = i; j != it_max; j++) //au fur et à mesure on diminue le tableau à trier
             if (*j < *it_min)
                 it_min = j;
+        //switch value
         auto temp = *it_min;
         *it_min = *i;
         *i = temp;
 
     }
 }
-
+//fonction nous permettant de stocker dans le container adéquat nos valeurs (adéquates)
 template <typename T,typename tab>
 void read_file(std::ifstream &input_file) {
     tab storage;
@@ -72,7 +72,7 @@ int main() {
         //Premier Switch permettant la vérification du type à stocker
         switch (variable_type(file)){
             case 'i':
-                switch (variable_type(file)){ //Deuxième switch
+                switch (variable_type(file)){ //Deuxième switch permettant la vérification du type de notre container
                     case 'v':
                         read_file<int, std::vector<int> >(file);
                         break;

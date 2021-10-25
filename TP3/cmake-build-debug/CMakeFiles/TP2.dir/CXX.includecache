@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/alphae/Cours/C++/TP2/main.cpp
+/home/alphae/Cours/C++/TP/TP3/main.cpp
 iostream
 -
 fstream
@@ -14,5 +14,11 @@ fstream
 string
 -
 algorithm
+-
+vector
+-
+list
+-
+deque
 -
 
